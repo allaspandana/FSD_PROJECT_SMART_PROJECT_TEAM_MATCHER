@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students | Smart Team Matcher</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar">
+    <a class="logo" href="index.html">Smart Team Matcher</a>
+    <div class="nav-links">
+        <a href="index.html">Dashboard</a>
+        <a href="profile.html">Profile</a>
+        <a href="project.html">Project</a>
+        <a href="matches.html">Matches</a>
+        <a class="active" href="student.html">Students</a>
+        <a href="team.html">Team</a>
+    </div>
+</nav>
+
+<main class="students-page">
+    <section class="students-hero">
+        <div>
+            <span class="page-label">STUDENT DIRECTORY</span>
+            <h1>Find Your Project Teammates</h1>
+            <p>Explore student profiles, skills, interests and experience to find people who can contribute to your project.</p>
+        </div>
+        <a href="profile.html" class="create-profile-btn">+ Create Profile</a>
+    </section>
+
+    <section class="student-statistics">
+        <article class="student-stat-card">
+            <div class="stat-icon">👥</div>
+            <div><span>TOTAL STUDENTS</span><strong id="studentCount">0</strong></div>
+        </article>
+        <article class="student-stat-card">
+            <div class="stat-icon">💻</div>
+            <div><span>UNIQUE SKILLS</span><strong id="skillCount">0</strong></div>
+        </article>
+        <article class="student-stat-card">
+            <div class="stat-icon">🤝</div>
+            <div><span>HIGH AVAILABILITY</span><strong id="availableCount">0</strong></div>
+        </article>
+    </section>
+
+    <section class="student-controls">
+        <div class="student-search">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchStudent" placeholder="Search by name, skill, interest or role...">
+        </div>
+        <select id="roleFilter">
+            <option value="all">All Roles</option>
+            <option value="Frontend">Frontend</option>
+            <option value="Backend">Backend</option>
+            <option value="Full Stack">Full Stack</option>
+            <option value="UI/UX">UI/UX</option>
+            <option value="Database">Database</option>
+            <option value="AI/ML">AI / ML</option>
+        </select>
+    </section>
+
+    <section class="directory-heading">
+        <div>
+            <span class="page-label">DIRECTORY</span>
+            <h2>Registered Students</h2>
+        </div>
+        <p id="resultText">Showing students</p>
+    </section>
+
+    <section id="studentsList" class="students-grid"></section>
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/students.js"></script>
+</body>
+</html>

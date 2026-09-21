@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Project | Smart Team Matcher</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar">
+    <a class="logo" href="index.html">Smart Team Matcher</a>
+    <div class="nav-links">
+        <a href="index.html">Dashboard</a>
+        <a href="profile.html">Profile</a>
+        <a class="active" href="project.html">Project</a>
+        <a href="matches.html">Matches</a>
+        <a href="student.html">Students</a>
+        <a href="team.html">Team</a>
+    </div>
+</nav>
+
+<main class="form-page">
+    <section class="form-section">
+        <div class="form-heading">
+            <span class="page-label">PROJECT REQUIREMENTS</span>
+            <h1>Create Your Project</h1>
+            <p>Tell us what your project needs and how many teammates you want.</p>
+        </div>
+
+        <form id="projectForm">
+            <label for="projectName">Project Name</label>
+            <input type="text" id="projectName" placeholder="Example: Smart College Event System" required>
+
+            <label for="description">Project Description</label>
+            <textarea id="description" placeholder="Describe your project briefly..." required></textarea>
+
+            <label for="requiredSkills">Required Skills</label>
+            <input type="text" id="requiredSkills" placeholder="HTML, CSS, JavaScript, SQL" required>
+            <small>Separate multiple skills with commas.</small>
+
+            <label for="teamSize">Team Size</label>
+            <input type="number" id="teamSize" min="2" max="10" value="3" required>
+
+            <button type="submit" class="primary-btn">Find Teammates</button>
+        </form>
+    </section>
+</main>
+<script src="js/project.js"></script>
+</body>
+</html>
