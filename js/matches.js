@@ -1,420 +1,1219 @@
 const matchesContainer = document.getElementById("matches");
 const projectInfo = document.getElementById("projectInfo");
 
-let projects = JSON.parse(localStorage.getItem("projects")) || [];
 
-// Migrate an older single-project record into the project history.
-const legacyProject = JSON.parse(localStorage.getItem("project"));
+// Get all projects
+let projects =
+    JSON.parse(localStorage.getItem("projects")) || [];
+
+
+// Migrate an older single-project record
+const legacyProject =
+    JSON.parse(localStorage.getItem("project"));
+
 if (projects.length === 0 && legacyProject) {
-    legacyProject.id = legacyProject.id || `legacy_${Date.now()}`;
-    legacyProject.createdAt = legacyProject.createdAt || new Date().toISOString();
+
+    legacyProject.id =
+        legacyProject.id || `legacy_${Date.now()}`;
+
+    legacyProject.createdAt =
+        legacyProject.createdAt ||
+        new Date().toISOString();
+
     projects = [legacyProject];
-    localStorage.setItem("projects", JSON.stringify(projects));
+
+    localStorage.setItem(
+        "projects",
+        JSON.stringify(projects)
+    );
 }
 
-let activeProjectId = localStorage.getItem("activeProjectId") || (projects[projects.length - 1] || {}).id;
-let project = projects.find(item => item.id === activeProjectId) || projects[projects.length - 1];
 
+// Get active project
+let activeProjectId =
+    localStorage.getItem("activeProjectId") ||
+    (projects[projects.length - 1] || {}).id;
+
+
+let project =
+    projects.find(
+        item => item.id === activeProjectId
+    ) ||
+    projects[projects.length - 1];
+
+
+// Get current student's profile
 const currentProfile =
-    JSON.parse(localStorage.getItem("studentProfile"));
+    JSON.parse(
+        localStorage.getItem("studentProfile")
+    );
 
+
+// If no project exists
 if (!project) {
+
     projectInfo.innerHTML = `
+
         <div class="notice-box">
+
             <h3>No project created yet</h3>
-            <p>Create a project first to see teammate recommendations.</p>
-            <a href="project.html" class="primary-btn">Create Project</a>
+
+            <p>
+                Create a project first to see teammate recommendations.
+            </p>
+
+            <a
+                href="project.html"
+                class="primary-btn"
+            >
+                Create Project
+            </a>
+
         </div>
+
     `;
+
 
     matchesContainer.innerHTML = `
+
         <div class="empty-matches">
+
             <div class="empty-icon">📋</div>
-            <h2>Create a project to start matching</h2>
-            <p>Your recommendations will appear here.</p>
+
+            <h2>
+                Create a project to start matching
+            </h2>
+
+            <p>
+                Your recommendations will appear here.
+            </p>
+
         </div>
+
     `;
+
 } else {
+
     displayProjectHistory();
+
     displayProject();
+
     displayMatches();
 }
 
+
+// Display project history
 function displayProjectHistory() {
-    const history = document.createElement("section");
-    history.className = "project-history-section";
+
+    const history =
+        document.createElement("section");
+
+    history.className =
+        "project-history-section";
+
+
     history.innerHTML = `
+
         <div class="recommendations-header">
-            <span class="page-label">PROJECT HISTORY</span>
-            <h2>All Your Projects</h2>
-            <p>Select any project to view its requirements and teammate recommendations.</p>
+
+            <span class="page-label">
+                PROJECT HISTORY
+            </span>
+
+            <h2>
+                All Your Projects
+            </h2>
+
+            <p>
+                Select any project to view its requirements
+                and teammate recommendations.
+            </p>
+
         </div>
+
+
         <div class="project-history-grid">
-            ${[...projects].reverse().map(item => `
-                <button class="project-history-card ${item.id === project.id ? "selected" : ""}" data-project-id="${item.id}">
-                    <span class="history-status">${item.id === project.id ? "ACTIVE PROJECT" : "PROJECT"}</span>
-                    <h3>${escapeHtml(item.projectName)}</h3>
-                    <p>${escapeHtml(item.description)}</p>
-                    <span class="history-meta">Team size: ${item.teamSize} · ${item.requiredSkills.length} skills</span>
-                </button>
-            `).join("")}
+
+            ${[...projects]
+                .reverse()
+                .map(
+                    item => `
+
+                    <button
+                        class="project-history-card ${
+                            item.id === project.id
+                                ? "selected"
+                                : ""
+                        }"
+                        data-project-id="${item.id}"
+                    >
+
+                        <span class="history-status">
+
+                            ${
+                                item.id === project.id
+                                    ? "ACTIVE PROJECT"
+                                    : "PROJECT"
+                            }
+
+                        </span>
+
+
+                        <h3>
+                            ${escapeHtml(
+                                item.projectName
+                            )}
+                        </h3>
+
+
+                        <p>
+                            ${escapeHtml(
+                                item.description
+                            )}
+                        </p>
+
+
+                        <span class="history-meta">
+
+                            Team size:
+                            ${item.teamSize}
+
+                            ·
+
+                            ${item.requiredSkills.length}
+                            skills
+
+                        </span>
+
+                    </button>
+
+                `
+                )
+                .join("")}
+
         </div>
+
     `;
 
-    const main = document.querySelector("main");
-    const projectCard = document.querySelector(".project-card");
-    main.insertBefore(history, projectCard);
 
-    history.querySelectorAll("[data-project-id]").forEach(button => {
-        button.addEventListener("click", () => {
-            activeProjectId = button.dataset.projectId;
-            project = projects.find(item => item.id === activeProjectId);
-            localStorage.setItem("activeProjectId", activeProjectId);
-            localStorage.setItem("project", JSON.stringify(project));
-            localStorage.removeItem("team");
-            history.remove();
-            displayProjectHistory();
-            displayProject();
-            displayMatches();
+    const main =
+        document.querySelector("main");
+
+
+    const projectCard =
+        document.querySelector(".project-card");
+
+
+    main.insertBefore(
+        history,
+        projectCard
+    );
+
+
+    history
+        .querySelectorAll(
+            "[data-project-id]"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    activeProjectId =
+                        button.dataset.projectId;
+
+
+                    project =
+                        projects.find(
+                            item =>
+                                item.id ===
+                                activeProjectId
+                        );
+
+
+                    localStorage.setItem(
+                        "activeProjectId",
+                        activeProjectId
+                    );
+
+
+                    localStorage.setItem(
+                        "project",
+                        JSON.stringify(project)
+                    );
+
+
+                    /*
+                     * Do not remove team data here.
+                     *
+                     * Each project now has its own
+                     * team inside teamsByProject.
+                     */
+
+                    history.remove();
+
+                    displayProjectHistory();
+
+                    displayProject();
+
+                    displayMatches();
+
+                }
+            );
+
         });
-    });
+
 }
 
+
+// Escape HTML
 function escapeHtml(value) {
-    return String(value || "").replace(/[&<>'"]/g, character => ({
-        "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
-    }[character]));
+
+    return String(value || "")
+        .replace(
+            /[&<>'"]/g,
+            character =>
+                ({
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    "'": "&#39;",
+                    '"': "&quot;"
+                }[character])
+        );
 }
 
+
+// Display selected project
 function displayProject() {
+
     projectInfo.innerHTML = `
+
         <div class="project-info-grid">
-            <div>
-                <span>PROJECT NAME</span>
-                <strong>${project.projectName}</strong>
-            </div>
 
             <div>
-                <span>TEAM SIZE</span>
-                <strong>${project.teamSize}</strong>
+
+                <span>
+                    PROJECT NAME
+                </span>
+
+                <strong>
+                    ${escapeHtml(
+                        project.projectName
+                    )}
+                </strong>
+
             </div>
+
+
+            <div>
+
+                <span>
+                    TEAM SIZE
+                </span>
+
+                <strong>
+                    ${project.teamSize}
+                </strong>
+
+            </div>
+
         </div>
+
 
         <p class="project-description">
-            ${project.description}
+
+            ${escapeHtml(
+                project.description
+            )}
+
         </p>
 
+
         <div class="required-skills">
-            <span>REQUIRED SKILLS</span>
+
+            <span>
+                REQUIRED SKILLS
+            </span>
+
             <div class="student-tags">
-                ${project.requiredSkills
-                    .map(skill => `<span class="student-skill">${skill}</span>`)
+
+                ${(project.requiredSkills || [])
+                    .map(
+                        skill =>
+                            `<span class="student-skill">
+                                ${escapeHtml(skill)}
+                            </span>`
+                    )
                     .join("")}
+
             </div>
+
         </div>
+
     `;
 }
 
+
+// Normalize text
 function normalize(value) {
-    return (value || "").trim().toLowerCase();
+
+    return (value || "")
+        .trim()
+        .toLowerCase();
 }
 
-function calculateSkillScore(student) {
-    const required = project.requiredSkills || [];
-    const studentSkills = student.skills || [];
 
-    if (required.length === 0) return 100;
+// Calculate skill score
+function calculateSkillScore(student) {
+
+    const required =
+        project.requiredSkills || [];
+
+
+    const studentSkills =
+        student.skills || [];
+
+
+    if (required.length === 0) {
+        return 100;
+    }
+
 
     let matched = 0;
 
-    required.forEach(requiredSkill => {
-        const found = studentSkills.some(
-            skill => normalize(skill) === normalize(requiredSkill)
+
+    required.forEach(
+        requiredSkill => {
+
+            const found =
+                studentSkills.some(
+                    skill =>
+                        normalize(skill) ===
+                        normalize(requiredSkill)
+                );
+
+
+            if (found) {
+                matched++;
+            }
+
+        }
+    );
+
+
+    return (
+        matched / required.length
+    ) * 100;
+}
+
+
+// Calculate interest score
+function calculateInterestScore(student) {
+
+    const description =
+        normalize(
+            project.description
         );
 
-        if (found) matched++;
-    });
 
-    return (matched / required.length) * 100;
-}
+    const projectName =
+        normalize(
+            project.projectName
+        );
 
-function calculateInterestScore(student) {
-    const description = normalize(project.description);
-    const projectName = normalize(project.projectName);
-    const interests = student.interests || [];
 
-    if (interests.length === 0) return 0;
+    const interests =
+        student.interests || [];
+
+
+    if (interests.length === 0) {
+        return 0;
+    }
+
 
     let matched = 0;
 
-    interests.forEach(interest => {
-        const words = normalize(interest)
-            .split(" ")
-            .filter(word => word.length > 2);
 
-        if (
-            words.some(
-                word =>
-                    description.includes(word) ||
-                    projectName.includes(word)
-            )
-        ) {
-            matched++;
+    interests.forEach(
+        interest => {
+
+            const words =
+                normalize(interest)
+                    .split(" ")
+                    .filter(
+                        word =>
+                            word.length > 2
+                    );
+
+
+            if (
+                words.some(
+                    word =>
+                        description.includes(word) ||
+                        projectName.includes(word)
+                )
+            ) {
+
+                matched++;
+
+            }
+
         }
-    });
+    );
+
 
     if (matched === 0) {
-        const required = (project.requiredSkills || []).map(normalize);
+
+        const required =
+            (project.requiredSkills || [])
+                .map(normalize);
+
 
         if (
-            interests.some(interest =>
-                required.some(skill =>
-                    normalize(interest).includes(skill) ||
-                    skill.includes(normalize(interest))
-                )
+            interests.some(
+                interest =>
+                    required.some(
+                        skill =>
+                            normalize(
+                                interest
+                            ).includes(skill) ||
+                            skill.includes(
+                                normalize(interest)
+                            )
+                    )
             )
         ) {
+
             return 60;
         }
     }
 
-    return (matched / interests.length) * 100;
+
+    return (
+        matched / interests.length
+    ) * 100;
 }
 
+
+// Calculate experience score
 function calculateExperienceScore(student) {
+
     const values = {
+
         Beginner: 40,
+
         Intermediate: 70,
+
         Advanced: 100
+
     };
 
-    return values[student.experience] || 40;
+
+    return (
+        values[student.experience] ||
+        40
+    );
 }
 
+
+// Calculate role score
 function calculateRoleScore(student) {
+
     const roleKeywords = {
-        Frontend: ["html", "css", "javascript", "frontend", "web"],
-        Backend: ["backend", "python", "java", "django", "spring", "api", "sql"],
-        "Full Stack": ["html", "css", "javascript", "backend", "frontend"],
-        "UI/UX": ["ui", "ux", "design", "frontend"],
-        Database: ["sql", "mysql", "oracle", "database"],
-        "AI/ML": ["ai", "ml", "machine", "python"]
+
+        Frontend: [
+            "html",
+            "css",
+            "javascript",
+            "frontend",
+            "web"
+        ],
+
+        Backend: [
+            "backend",
+            "python",
+            "java",
+            "django",
+            "spring",
+            "api",
+            "sql"
+        ],
+
+        "Full Stack": [
+            "html",
+            "css",
+            "javascript",
+            "backend",
+            "frontend"
+        ],
+
+        "UI/UX": [
+            "ui",
+            "ux",
+            "design",
+            "frontend"
+        ],
+
+        Database: [
+            "sql",
+            "mysql",
+            "oracle",
+            "database"
+        ],
+
+        "AI/ML": [
+            "ai",
+            "ml",
+            "machine",
+            "python"
+        ]
+
     };
 
-    const keywords = roleKeywords[student.role] || [];
-    const projectText = normalize(
-        `${project.projectName} ${project.description} ${(project.requiredSkills || []).join(" ")}`
-    );
 
-    if (!keywords.length) return 50;
+    const keywords =
+        roleKeywords[student.role] || [];
 
-    return keywords.some(keyword => projectText.includes(keyword))
+
+    const projectText =
+        normalize(
+            `${project.projectName}
+            ${project.description}
+            ${(project.requiredSkills || []).join(" ")}`
+        );
+
+
+    if (!keywords.length) {
+        return 50;
+    }
+
+
+    return keywords.some(
+        keyword =>
+            projectText.includes(keyword)
+    )
         ? 100
         : 50;
 }
 
+
+// Calculate availability score
 function calculateAvailabilityScore(student) {
+
     const values = {
+
         High: 100,
+
         Medium: 70,
+
         Low: 40
+
     };
 
-    return values[student.availability] || 40;
+
+    return (
+        values[student.availability] ||
+        40
+    );
 }
 
+
+// Calculate final match score
 function calculateMatch(student) {
-    const skills = calculateSkillScore(student);
-    const interests = calculateInterestScore(student);
-    const experience = calculateExperienceScore(student);
-    const role = calculateRoleScore(student);
-    const availability = calculateAvailabilityScore(student);
+
+    const skills =
+        calculateSkillScore(student);
+
+
+    const interests =
+        calculateInterestScore(student);
+
+
+    const experience =
+        calculateExperienceScore(student);
+
+
+    const role =
+        calculateRoleScore(student);
+
+
+    const availability =
+        calculateAvailabilityScore(student);
+
 
     const finalScore =
+
         skills * 0.50 +
+
         interests * 0.20 +
+
         experience * 0.15 +
+
         role * 0.10 +
+
         availability * 0.05;
 
+
     return {
+
         skills,
+
         interests,
+
         experience,
+
         role,
+
         availability,
-        finalScore: Math.round(finalScore)
+
+        finalScore:
+            Math.round(finalScore)
+
     };
 }
 
-function getAllStudentsForMatching() {
-    const registered =
-        JSON.parse(localStorage.getItem("registeredStudents")) || [];
 
-    const combined = [...students, ...registered];
+// Get all students for matching
+function getAllStudentsForMatching() {
+
+    const registered =
+        JSON.parse(
+            localStorage.getItem(
+                "registeredStudents"
+            )
+        ) || [];
+
+
+    /*
+     * "students" is assumed to be
+     * available from your existing project code.
+     */
+    const combined =
+        [...students, ...registered];
+
 
     const unique = [];
-    const seenEmails = new Set();
 
-    combined.forEach(student => {
-        const email = normalize(student.email);
+    const seenEmails =
+        new Set();
 
-        if (!seenEmails.has(email)) {
-            seenEmails.add(email);
-            unique.push(student);
+
+    combined.forEach(
+        student => {
+
+            const email =
+                normalize(
+                    student.email
+                );
+
+
+            if (
+                !seenEmails.has(email)
+            ) {
+
+                seenEmails.add(email);
+
+                unique.push(student);
+
+            }
+
         }
-    });
+    );
+
 
     return unique;
 }
 
+
+// Display matches
 function displayMatches() {
-    const allStudents = getAllStudentsForMatching();
 
-    const candidates = allStudents.filter(student => {
-        if (!currentProfile) return true;
+    const allStudents =
+        getAllStudentsForMatching();
 
-        return normalize(student.email) !==
-            normalize(currentProfile.email);
-    });
 
-    const ranked = candidates
-        .map(student => ({
-            student,
-            score: calculateMatch(student)
-        }))
-        .sort((a, b) =>
-            b.score.finalScore - a.score.finalScore
+    const candidates =
+        allStudents.filter(
+            student => {
+
+                if (!currentProfile) {
+                    return true;
+                }
+
+
+                return (
+                    normalize(
+                        student.email
+                    ) !==
+                    normalize(
+                        currentProfile.email
+                    )
+                );
+
+            }
         );
 
+
+    const ranked =
+        candidates
+            .map(
+                student => ({
+
+                    student,
+
+                    score:
+                        calculateMatch(
+                            student
+                        )
+
+                })
+            )
+            .sort(
+                (a, b) =>
+                    b.score.finalScore -
+                    a.score.finalScore
+            );
+
+
     if (ranked.length === 0) {
+
         matchesContainer.innerHTML = `
+
             <div class="empty-matches">
-                <div class="empty-icon">👥</div>
-                <h2>No teammates available</h2>
-                <p>Add more student profiles to generate recommendations.</p>
+
+                <div class="empty-icon">
+                    👥
+                </div>
+
+                <h2>
+                    No teammates available
+                </h2>
+
+                <p>
+                    Add more student profiles
+                    to generate recommendations.
+                </p>
+
             </div>
+
         `;
+
         return;
     }
+
 
     matchesContainer.innerHTML = "";
 
-    ranked.forEach(item => {
-        const student = item.student;
-        const score = item.score;
 
-        const card = document.createElement("article");
-        card.className = "match-card";
+    ranked.forEach(
+        item => {
 
-        card.innerHTML = `
-            <div class="match-card-header">
-                <div class="student-identity">
-                    <div class="student-avatar">
-                        ${getInitials(student.name)}
+            const student =
+                item.student;
+
+
+            const score =
+                item.score;
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "match-card";
+
+
+            card.innerHTML = `
+
+                <div class="match-card-header">
+
+                    <div class="student-identity">
+
+                        <div class="student-avatar">
+
+                            ${getInitials(
+                                student.name
+                            )}
+
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                ${escapeHtml(
+                                    student.name
+                                )}
+                            </h3>
+
+
+                            <p>
+                                ${escapeHtml(
+                                    student.email
+                                )}
+                            </p>
+
+                        </div>
+
                     </div>
+
+
+                    <div class="score-badge">
+
+                        ${score.finalScore}%
+
+                    </div>
+
+                </div>
+
+
+                <div class="match-role-row">
+
+                    <span class="professional-role">
+
+                        ${escapeHtml(
+                            student.role
+                        )}
+
+                    </span>
+
+
+                    <span class="availability-text">
+
+                        ${escapeHtml(
+                            student.availability
+                        )}
+
+                        availability
+
+                    </span>
+
+                </div>
+
+
+                <div class="match-section">
+
+                    <h4>
+                        Skills
+                    </h4>
+
+
+                    <div class="student-tags">
+
+                        ${(student.skills || [])
+                            .map(
+                                skill =>
+                                    `<span class="student-skill">
+                                        ${escapeHtml(skill)}
+                                    </span>`
+                            )
+                            .join("")}
+
+                    </div>
+
+                </div>
+
+
+                <div class="match-section">
+
+                    <h4>
+                        Interests
+                    </h4>
+
+
+                    <div class="student-tags">
+
+                        ${(student.interests || [])
+                            .map(
+                                interest =>
+                                    `<span class="student-interest">
+                                        ${escapeHtml(
+                                            interest
+                                        )}
+                                    </span>`
+                            )
+                            .join("")}
+
+                    </div>
+
+                </div>
+
+
+                <div class="score-breakdown">
 
                     <div>
-                        <h3>${student.name}</h3>
-                        <p>${student.email}</p>
+
+                        <span>
+                            Skills
+                        </span>
+
+                        <strong>
+                            ${Math.round(
+                                score.skills
+                            )}%
+                        </strong>
+
                     </div>
+
+
+                    <div>
+
+                        <span>
+                            Interests
+                        </span>
+
+                        <strong>
+                            ${Math.round(
+                                score.interests
+                            )}%
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Experience
+                        </span>
+
+                        <strong>
+                            ${Math.round(
+                                score.experience
+                            )}%
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Role
+                        </span>
+
+                        <strong>
+                            ${Math.round(
+                                score.role
+                            )}%
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Availability
+                        </span>
+
+                        <strong>
+                            ${Math.round(
+                                score.availability
+                            )}%
+                        </strong>
+
+                    </div>
+
                 </div>
 
-                <div class="score-badge">
-                    ${score.finalScore}%
-                </div>
-            </div>
 
-            <div class="match-role-row">
-                <span class="professional-role">
-                    ${student.role}
-                </span>
+                <button
+                    class="invite-btn"
+                    onclick='inviteStudent(${JSON.stringify(
+                        student
+                    )})'
+                >
 
-                <span class="availability-text">
-                    ${student.availability} availability
-                </span>
-            </div>
+                    + Invite to Team
 
-            <div class="match-section">
-                <h4>Skills</h4>
-                <div class="student-tags">
-                    ${(student.skills || [])
-                        .map(skill => `<span class="student-skill">${skill}</span>`)
-                        .join("")}
-                </div>
-            </div>
+                </button>
 
-            <div class="match-section">
-                <h4>Interests</h4>
-                <div class="student-tags">
-                    ${(student.interests || [])
-                        .map(interest => `<span class="student-interest">${interest}</span>`)
-                        .join("")}
-                </div>
-            </div>
+            `;
 
-            <div class="score-breakdown">
-                <div><span>Skills</span><strong>${Math.round(score.skills)}%</strong></div>
-                <div><span>Interests</span><strong>${Math.round(score.interests)}%</strong></div>
-                <div><span>Experience</span><strong>${Math.round(score.experience)}%</strong></div>
-                <div><span>Role</span><strong>${Math.round(score.role)}%</strong></div>
-                <div><span>Availability</span><strong>${Math.round(score.availability)}%</strong></div>
-            </div>
 
-            <button
-                class="invite-btn"
-                onclick='inviteStudent(${JSON.stringify(student)})'>
-                + Invite to Team
-            </button>
-        `;
+            matchesContainer.appendChild(
+                card
+            );
 
-        matchesContainer.appendChild(card);
-    });
+        }
+    );
 }
 
+
+// Get initials
 function getInitials(name) {
-    if (!name) return "ST";
 
-    const words = name.trim().split(" ");
-
-    if (words.length === 1) {
-        return words[0].substring(0, 2).toUpperCase();
+    if (!name) {
+        return "ST";
     }
 
+
+    const words =
+        name.trim().split(/\s+/);
+
+
+    if (words.length === 1) {
+
+        return words[0]
+            .substring(0, 2)
+            .toUpperCase();
+    }
+
+
     return (
+
         words[0].charAt(0) +
-        words[words.length - 1].charAt(0)
+
+        words[words.length - 1]
+            .charAt(0)
+
     ).toUpperCase();
 }
 
+
+/*
+ * =====================================================
+ * INVITE STUDENT
+ * =====================================================
+ *
+ * Each project gets its own team.
+ *
+ * teamsByProject = {
+ *
+ *     projectId1: [student1, student2],
+ *
+ *     projectId2: [student3]
+ *
+ * }
+ *
+ */
 function inviteStudent(student) {
-    let team =
-        JSON.parse(localStorage.getItem("team")) || [];
 
-    const alreadyAdded = team.some(
-        member =>
-            normalize(member.email) ===
-            normalize(student.email)
-    );
+    /*
+     * Get all project teams
+     */
+    let teamsByProject =
+        JSON.parse(
+            localStorage.getItem(
+                "teamsByProject"
+            )
+        ) || {};
 
-    if (alreadyAdded) {
-        alert("This student is already in your team.");
+
+    /*
+     * Make sure current project has an ID
+     */
+    const projectId =
+        project.id ||
+        project.projectId;
+
+
+    /*
+     * If project does not have an ID,
+     * stop instead of saving incorrectly.
+     */
+    if (!projectId) {
+
+        alert(
+            "Project ID not found."
+        );
+
         return;
     }
 
-    if (team.length >= Number(project.teamSize)) {
+
+    /*
+     * Get current project's team
+     */
+    let team =
+        teamsByProject[projectId] || [];
+
+
+    /*
+     * Check whether student is already
+     * added to this project
+     */
+    const alreadyAdded =
+        team.some(
+            member =>
+                normalize(
+                    member.email
+                ) ===
+                normalize(
+                    student.email
+                )
+        );
+
+
+    if (alreadyAdded) {
+
+        alert(
+            "This student is already in your team."
+        );
+
+        return;
+    }
+
+
+    /*
+     * Check team size
+     */
+    if (
+        team.length >=
+        Number(project.teamSize)
+    ) {
+
         alert(
             `Your team size is limited to ${project.teamSize} members.`
         );
+
         return;
     }
 
+
+    /*
+     * Add student
+     */
     team.push(student);
 
+
+    /*
+     * Save team for this project
+     */
+    teamsByProject[projectId] =
+        team;
+
+
+    /*
+     * Save all project teams
+     */
+    localStorage.setItem(
+        "teamsByProject",
+        JSON.stringify(
+            teamsByProject
+        )
+    );
+
+
+    /*
+     * Compatibility with older code
+     */
     localStorage.setItem(
         "team",
         JSON.stringify(team)
     );
 
-    alert(`${student.name} added to your team!`);
+
+    /*
+     * Success message
+     */
+    alert(
+        `${student.name} added to your team!`
+    );
 }
