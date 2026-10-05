@@ -1,50 +1,792 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Create Project | Smart Team Matcher</title>
+
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #e8ebf2;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 700;
+            color: #4f46e5;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #667085;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #4f46e5;
+        }
+
+
+        /* ================= PAGE ================= */
+
+        .project-page {
+            max-width: 1250px;
+            margin: 45px auto;
+            padding: 0 25px;
+        }
+
+        .page-top {
+            margin-bottom: 30px;
+        }
+
+        .page-label {
+            color: #4f46e5;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .page-top h1 {
+            font-size: 34px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .page-top p {
+            color: #667085;
+            font-size: 15px;
+        }
+
+
+        /* ================= GRID ================= */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.4fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+
+        /* ================= LEFT CARD ================= */
+
+        .project-intro {
+            background: linear-gradient(145deg, #4f46e5, #7c3aed);
+            color: white;
+            border-radius: 24px;
+            padding: 35px;
+            min-height: 590px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-intro::before {
+            content: "";
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            position: absolute;
+            right: -90px;
+            top: -70px;
+        }
+
+        .project-intro::after {
+            content: "";
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            position: absolute;
+            left: -80px;
+            bottom: -70px;
+        }
+
+
+        /* PROJECT ICON */
+
+        .project-icon {
+            width: 75px;
+            height: 75px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 21px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 35px;
+            margin-bottom: 30px;
+        }
+
+
+        .project-intro h2 {
+            font-size: 27px;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+
+        .project-intro > p {
+            color: #e7e7ff;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+
+        /* PROJECT STEPS */
+
+        .project-steps {
+            margin-top: 35px;
+        }
+
+        .project-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .step-icon {
+            width: 31px;
+            height: 31px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.15);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= FORM CARD ================= */
+
+        .form-card {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+
+            border: 1px solid #e9ecf3;
+
+            box-shadow: 0 12px 35px rgba(20, 30, 60, 0.06);
+        }
+
+
+        .form-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 28px;
+        }
+
+        .form-card-header h2 {
+            font-size: 21px;
+        }
+
+        .step {
+            background: #eef2ff;
+            color: #4f46e5;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+
+        /* ================= FORM ================= */
+
+        form {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 8px;
+
+            color: #344054;
+        }
+
+
+        input,
+        textarea {
+            width: 100%;
+
+            border: 1px solid #d9dee8;
+
+            border-radius: 11px;
+
+            padding: 13px 14px;
+
+            font-size: 14px;
+
+            color: #344054;
+
+            background: white;
+
+            outline: none;
+
+            transition: 0.25s;
+        }
+
+
+        input {
+            height: 48px;
+        }
+
+
+        textarea {
+            min-height: 130px;
+
+            resize: vertical;
+
+            font-family: inherit;
+        }
+
+
+        input:focus,
+        textarea:focus {
+            border-color: #6366f1;
+
+            box-shadow:
+                0 0 0 4px rgba(99,102,241,0.10);
+        }
+
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #98a2b3;
+        }
+
+
+        small {
+            color: #98a2b3;
+
+            margin-top: 6px;
+
+            font-size: 11px;
+        }
+
+
+        /* ================= PROJECT NAME ================= */
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+
+            left: 14px;
+
+            top: 14px;
+
+            font-size: 17px;
+        }
+
+        .input-wrapper input {
+            padding-left: 42px;
+        }
+
+
+        /* ================= TEAM SIZE ================= */
+
+        .team-size-info {
+            margin-top: 8px;
+
+            padding: 10px 12px;
+
+            background: #f8f9fc;
+
+            border-radius: 9px;
+
+            font-size: 11px;
+
+            color: #667085;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .button-area {
+            grid-column: 1 / -1;
+
+            margin-top: 10px;
+
+            display: flex;
+
+            justify-content: flex-end;
+        }
+
+
+        .primary-btn {
+            border: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
+
+            padding: 14px 28px;
+
+            border-radius: 11px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+
+            box-shadow:
+                0 8px 20px rgba(79,70,229,0.25);
+        }
+
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px rgba(79,70,229,0.32);
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-intro {
+                min-height: auto;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                padding: 0 25px;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .project-page {
+                margin: 25px auto;
+
+                padding: 0 15px;
+            }
+
+            .page-top h1 {
+                font-size: 27px;
+            }
+
+            .form-card {
+                padding: 22px;
+            }
+
+            form {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width,
+            .button-area {
+                grid-column: auto;
+            }
+
+            .button-area {
+                justify-content: stretch;
+            }
+
+            .primary-btn {
+                width: 100%;
+            }
+        }
+
+    </style>
+
 </head>
+
+
 <body>
+
+
+<!-- ================= NAVBAR ================= -->
+
 <nav class="navbar">
-    <a class="logo" href="index.html">Smart Team Matcher</a>
+
+    <a class="logo" href="index.html">
+        Smart Team Matcher
+    </a>
+
     <div class="nav-links">
-        <a href="index.html">Dashboard</a>
-        <a href="profile.html">Profile</a>
-        <a class="active" href="project.html">Project</a>
-        <a href="matches.html">Matches</a>
-        <a href="student.html">Students</a>
-        <a href="team.html">Team</a>
+
+        <a href="index.html">
+            Dashboard
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+        <a class="active" href="project.html">
+            Project
+        </a>
+
+        <a href="matches.html">
+            Matches
+        </a>
+
+        <a href="student.html">
+            Students
+        </a>
+
+        <a href="team.html">
+            Team
+        </a>
+
     </div>
+
 </nav>
 
-<main class="form-page">
-    <section class="form-section">
-        <div class="form-heading">
-            <span class="page-label">PROJECT REQUIREMENTS</span>
-            <h1>Create Your Project</h1>
-            <p>Tell us what your project needs and how many teammates you want.</p>
-        </div>
 
-        <form id="projectForm">
-            <label for="projectName">Project Name</label>
-            <input type="text" id="projectName" placeholder="Example: Smart College Event System" required>
 
-            <label for="description">Project Description</label>
-            <textarea id="description" placeholder="Describe your project briefly..." required></textarea>
+<!-- ================= MAIN PAGE ================= -->
 
-            <label for="requiredSkills">Required Skills</label>
-            <input type="text" id="requiredSkills" placeholder="HTML, CSS, JavaScript, SQL" required>
-            <small>Separate multiple skills with commas.</small>
+<main class="project-page">
 
-            <label for="teamSize">Team Size</label>
-            <input type="number" id="teamSize" min="2" max="10" value="3" required>
 
-            <button type="submit" class="primary-btn">Find Teammates</button>
-        </form>
-    </section>
+    <!-- PAGE HEADER -->
+
+    <div class="page-top">
+
+        <span class="page-label">
+            PROJECT REQUIREMENTS
+        </span>
+
+        <h1>
+            Create Your Project
+        </h1>
+
+        <p>
+            Tell us about your project and we'll help you find
+            students with the right skills.
+        </p>
+
+    </div>
+
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <div class="project-grid">
+
+
+        <!-- LEFT INFORMATION CARD -->
+
+        <section class="project-intro">
+
+
+            <div class="project-icon">
+                🚀
+            </div>
+
+
+            <h2>
+                Turn your idea<br>
+                into a great team.
+            </h2>
+
+
+            <p>
+                Describe your project requirements and Smart Team
+                Matcher will analyze the skills, interests and
+                experience of students to suggest suitable teammates.
+            </p>
+
+
+
+            <div class="project-steps">
+
+
+                <div class="project-step">
+
+                    <span class="step-icon">
+                        1
+                    </span>
+
+                    <span>
+                        Describe your project idea
+                    </span>
+
+                </div>
+
+
+                <div class="project-step">
+
+                    <span class="step-icon">
+                        2
+                    </span>
+
+                    <span>
+                        Add the skills you need
+                    </span>
+
+                </div>
+
+
+                <div class="project-step">
+
+                    <span class="step-icon">
+                        3
+                    </span>
+
+                    <span>
+                        Select your ideal team size
+                    </span>
+
+                </div>
+
+
+                <div class="project-step">
+
+                    <span class="step-icon">
+                        4
+                    </span>
+
+                    <span>
+                        Discover your best matches
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= FORM ================= -->
+
+        <section class="form-card">
+
+
+            <div class="form-card-header">
+
+                <h2>
+                    Project Information
+                </h2>
+
+                <span class="step">
+                    STEP 1 OF 1
+                </span>
+
+            </div>
+
+
+
+            <form id="projectForm">
+
+
+                <!-- PROJECT NAME -->
+
+                <div class="field full-width">
+
+                    <label for="projectName">
+                        Project Name
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            💡
+                        </span>
+
+                        <input
+                            type="text"
+                            id="projectName"
+                            placeholder="Example: Smart College Event System"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="field full-width">
+
+                    <label for="description">
+                        Project Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        placeholder="Describe your project idea, its purpose and what you want to build..."
+                        required
+                    ></textarea>
+
+                    <small>
+                        Give a short description so the matcher can understand your project.
+                    </small>
+
+                </div>
+
+
+
+                <!-- REQUIRED SKILLS -->
+
+                <div class="field full-width">
+
+                    <label for="requiredSkills">
+                        Required Skills
+                    </label>
+
+                    <input
+                        type="text"
+                        id="requiredSkills"
+                        placeholder="HTML, CSS, JavaScript, Python, SQL"
+                        required
+                    >
+
+                    <small>
+                        Separate multiple skills with commas.
+                    </small>
+
+                </div>
+
+
+
+                <!-- TEAM SIZE -->
+
+                <div class="field">
+
+                    <label for="teamSize">
+                        Team Size
+                    </label>
+
+                    <input
+                        type="number"
+                        id="teamSize"
+                        min="2"
+                        max="10"
+                        value="3"
+                        required
+                    >
+
+                    <div class="team-size-info">
+                        👥 Choose between 2 and 10 team members.
+                    </div>
+
+                </div>
+
+
+
+                <!-- BUTTON -->
+
+                <div class="button-area">
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Find Teammates →
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+
+    </div>
+
+
 </main>
+
+
+
 <script src="js/project.js"></script>
+
+
 </body>
+
 </html>
