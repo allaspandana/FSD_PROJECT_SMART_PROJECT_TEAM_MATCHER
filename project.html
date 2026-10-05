@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,236 +12,575 @@
 
     <style>
 
+        /* =====================================================
+           PROJECT PAGE - PROFESSIONAL DESIGN
+        ===================================================== */
+
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
+            margin: 0;
             font-family: "Segoe UI", Arial, sans-serif;
             background: #f5f7fb;
             color: #172033;
         }
 
-        /* ================= NAVBAR ================= */
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
 
         .navbar {
-            height: 70px;
-            background: white;
+            min-height: 76px !important;
+
+            background: linear-gradient(
+                120deg,
+                #0f172a,
+                #1e3a8a
+            ) !important;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             padding: 0 7%;
-            border-bottom: 1px solid #e8ebf2;
+
+            box-shadow:
+                0 4px 18px rgba(15, 23, 42, 0.14);
+
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
-        .logo {
+
+        .navbar .logo {
+            color: white !important;
+            text-decoration: none;
+
             font-size: 21px;
             font-weight: 700;
-            color: #4f46e5;
-            text-decoration: none;
         }
 
-        .nav-links {
+
+        .navbar .nav-links {
             display: flex;
-            gap: 28px;
+            align-items: center;
+            gap: 8px;
         }
 
-        .nav-links a {
+
+        .navbar .nav-links a {
+            color: #e5e7eb !important;
             text-decoration: none;
-            color: #667085;
+
             font-size: 14px;
             font-weight: 500;
-            transition: 0.3s;
+
+            padding: 9px 13px;
+            border-radius: 8px;
+
+            transition: 0.25s;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #4f46e5;
+
+        .navbar .nav-links a:hover {
+            color: white !important;
+            background: rgba(255, 255, 255, 0.12) !important;
         }
 
 
-        /* ================= PAGE ================= */
+        .navbar .nav-links a.active {
+            color: white !important;
+            background: #3b82f6 !important;
+        }
+
+
+        /* =====================================================
+           MAIN PAGE
+        ===================================================== */
 
         .project-page {
-            max-width: 1250px;
-            margin: 45px auto;
-            padding: 0 25px;
+            max-width: 1240px;
+
+            margin: 0 auto;
+
+            padding: 48px 25px 70px;
         }
+
+
+        /* =====================================================
+           PAGE HEADER
+        ===================================================== */
 
         .page-top {
-            margin-bottom: 30px;
+            margin-bottom: 32px;
         }
+
 
         .page-label {
-            color: #4f46e5;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-        }
-
-        .page-top h1 {
-            font-size: 34px;
-            margin-top: 8px;
-            margin-bottom: 8px;
-        }
-
-        .page-top p {
-            color: #667085;
-            font-size: 15px;
-        }
-
-
-        /* ================= GRID ================= */
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: 0.8fr 1.4fr;
-            gap: 28px;
-            align-items: start;
-        }
-
-
-        /* ================= LEFT CARD ================= */
-
-        .project-intro {
-            background: linear-gradient(145deg, #4f46e5, #7c3aed);
-            color: white;
-            border-radius: 24px;
-            padding: 35px;
-            min-height: 590px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-intro::before {
-            content: "";
-            width: 230px;
-            height: 230px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            position: absolute;
-            right: -90px;
-            top: -70px;
-        }
-
-        .project-intro::after {
-            content: "";
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.07);
-            position: absolute;
-            left: -80px;
-            bottom: -70px;
-        }
-
-
-        /* PROJECT ICON */
-
-        .project-icon {
-            width: 75px;
-            height: 75px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 21px;
-
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-
-            font-size: 35px;
-            margin-bottom: 30px;
-        }
-
-
-        .project-intro h2 {
-            font-size: 27px;
-            line-height: 1.3;
-            margin-bottom: 15px;
-        }
-
-        .project-intro > p {
-            color: #e7e7ff;
-            line-height: 1.7;
-            font-size: 14px;
-        }
-
-
-        /* PROJECT STEPS */
-
-        .project-steps {
-            margin-top: 35px;
-        }
-
-        .project-step {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .step-icon {
-            width: 31px;
-            height: 31px;
-
-            border-radius: 50%;
-
-            background: rgba(255,255,255,0.15);
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            font-size: 14px;
-        }
-
-
-        /* ================= FORM CARD ================= */
-
-        .form-card {
-            background: white;
-            border-radius: 24px;
-            padding: 35px;
-
-            border: 1px solid #e9ecf3;
-
-            box-shadow: 0 12px 35px rgba(20, 30, 60, 0.06);
-        }
-
-
-        .form-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            margin-bottom: 28px;
-        }
-
-        .form-card-header h2 {
-            font-size: 21px;
-        }
-
-        .step {
-            background: #eef2ff;
-            color: #4f46e5;
 
             padding: 7px 13px;
 
             border-radius: 20px;
 
+            background: #eef2ff;
+            color: #4f46e5;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 1.3px;
+        }
+
+
+        .page-top h1 {
+            margin: 12px 0 8px;
+
+            font-size: 36px;
+            font-weight: 800;
+
+            color: #0f172a;
+
+            letter-spacing: -0.7px;
+        }
+
+
+        .page-top p {
+            margin: 0;
+
+            max-width: 700px;
+
+            color: #64748b;
+
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           MAIN GRID
+        ===================================================== */
+
+        .project-grid {
+            display: grid;
+
+            grid-template-columns: 0.8fr 1.4fr;
+
+            gap: 28px;
+
+            align-items: stretch;
+        }
+
+
+        /* =====================================================
+           LEFT INTRO CARD
+        ===================================================== */
+
+        .project-intro {
+
+            position: relative;
+
+            overflow: hidden;
+
+            min-height: 610px;
+
+            padding: 38px;
+
+            border-radius: 24px;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(255,255,255,0.14),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    145deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            box-shadow:
+                0 18px 45px rgba(79, 70, 229, 0.22);
+        }
+
+
+        .project-intro::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.07);
+
+            right: -90px;
+            top: -70px;
+        }
+
+
+        .project-intro::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.06);
+
+            left: -80px;
+            bottom: -70px;
+        }
+
+
+        /* =====================================================
+           PROJECT ICON
+        ===================================================== */
+
+        .project-icon {
+
+            width: 72px;
+            height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,0.15);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            font-size: 34px;
+
+            margin-bottom: 28px;
+
+            position: relative;
+            z-index: 2;
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.08);
+        }
+
+
+        .project-intro h2 {
+
+            margin: 0 0 15px;
+
+            font-size: 27px;
+            line-height: 1.3;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .project-intro > p {
+
+            margin: 0;
+
+            color: #e7e7ff;
+
+            font-size: 14px;
+            line-height: 1.8;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* =====================================================
+           STEPS
+        ===================================================== */
+
+        .project-steps {
+
+            margin-top: 36px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .step {
+
+            display: flex;
+
+            gap: 13px;
+
+            margin-bottom: 23px;
+        }
+
+
+        .step-number {
+
+            width: 31px;
+            height: 31px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.15);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
             font-size: 12px;
+            font-weight: 700;
+        }
+
+
+        .step-text h4 {
+
+            margin: 0 0 4px;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .step-text p {
+
+            margin: 0;
+
+            color: #dedcff;
+
+            font-size: 12px;
+
+            line-height: 1.55;
+        }
+
+
+        /* =====================================================
+           FORM CARD
+        ===================================================== */
+
+        .form-card {
+
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 24px;
+
+            padding: 36px;
+
+            box-shadow:
+                0 12px 35px rgba(15, 23, 42, 0.07);
+        }
+
+
+        /* =====================================================
+           FORM HEADER
+        ===================================================== */
+
+        .form-header {
+
+            display: flex;
+
+            justify-content: space-between;
+            align-items: flex-start;
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .form-header h2 {
+
+            margin: 0 0 7px;
+
+            font-size: 23px;
+
+            color: #0f172a;
+        }
+
+
+        .form-header p {
+
+            margin: 0;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        .step-label {
+
+            flex-shrink: 0;
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+
+            padding: 8px 13px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================================
+           FORM SECTION
+        ===================================================== */
+
+        .form-section {
+
+            margin-bottom: 28px;
+        }
+
+
+        .section-title {
+
+            margin-bottom: 18px;
+
+            padding-bottom: 11px;
+
+            border-bottom: 1px solid #edf0f5;
+
+            color: #172033;
+
+            font-size: 15px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           FORM GROUP
+        ===================================================== */
+
+        .form-group {
+
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #344054;
+
+            font-size: 13px;
+
             font-weight: 600;
         }
 
 
-        /* ================= FORM ================= */
+        .required {
 
-        form {
+            color: #ef4444;
+
+            margin-left: 2px;
+        }
+
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+
+            width: 100%;
+
+            border: 1px solid #d9dee8;
+
+            border-radius: 10px;
+
+            padding: 13px 14px;
+
+            background: #ffffff;
+
+            color: #172033;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            height: 47px;
+        }
+
+
+        .form-group textarea {
+
+            min-height: 125px;
+
+            resize: vertical;
+
+            line-height: 1.6;
+        }
+
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+
+            color: #98a2b3;
+        }
+
+
+        .form-group input:hover,
+        .form-group textarea:hover,
+        .form-group select:hover {
+
+            border-color: #b8c0ce;
+        }
+
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+
+            border-color: #6366f1;
+
+            box-shadow:
+                0 0 0 3px rgba(99, 102, 241, 0.10);
+        }
+
+
+        /* =====================================================
+           TWO COLUMN FORM
+        ===================================================== */
+
+        .form-row {
+
             display: grid;
 
             grid-template-columns: 1fr 1fr;
@@ -248,130 +588,82 @@
             gap: 20px;
         }
 
-        .field {
+
+        /* =====================================================
+           INFO BOX
+        ===================================================== */
+
+        .info-box {
+
             display: flex;
-            flex-direction: column;
-        }
 
-        .full-width {
-            grid-column: 1 / -1;
-        }
+            align-items: flex-start;
 
-        label {
-            font-size: 13px;
+            gap: 12px;
 
-            font-weight: 600;
+            padding: 15px;
 
-            margin-bottom: 8px;
+            margin-bottom: 25px;
 
-            color: #344054;
-        }
+            background: #f8f9ff;
 
+            border: 1px solid #e5e7ff;
 
-        input,
-        textarea {
-            width: 100%;
-
-            border: 1px solid #d9dee8;
-
-            border-radius: 11px;
-
-            padding: 13px 14px;
-
-            font-size: 14px;
-
-            color: #344054;
-
-            background: white;
-
-            outline: none;
-
-            transition: 0.25s;
+            border-radius: 12px;
         }
 
 
-        input {
-            height: 48px;
-        }
+        .info-icon {
 
+            width: 32px;
+            height: 32px;
 
-        textarea {
-            min-height: 130px;
+            flex-shrink: 0;
 
-            resize: vertical;
-
-            font-family: inherit;
-        }
-
-
-        input:focus,
-        textarea:focus {
-            border-color: #6366f1;
-
-            box-shadow:
-                0 0 0 4px rgba(99,102,241,0.10);
-        }
-
-
-        input::placeholder,
-        textarea::placeholder {
-            color: #98a2b3;
-        }
-
-
-        small {
-            color: #98a2b3;
-
-            margin-top: 6px;
-
-            font-size: 11px;
-        }
-
-
-        /* ================= PROJECT NAME ================= */
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        .input-icon {
-            position: absolute;
-
-            left: 14px;
-
-            top: 14px;
-
-            font-size: 17px;
-        }
-
-        .input-wrapper input {
-            padding-left: 42px;
-        }
-
-
-        /* ================= TEAM SIZE ================= */
-
-        .team-size-info {
-            margin-top: 8px;
-
-            padding: 10px 12px;
-
-            background: #f8f9fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             border-radius: 9px;
 
-            font-size: 11px;
+            background: #eef2ff;
 
-            color: #667085;
+            color: #4f46e5;
+
+            font-size: 14px;
+            font-weight: 700;
         }
 
 
-        /* ================= BUTTON ================= */
+        .info-box strong {
 
-        .button-area {
-            grid-column: 1 / -1;
+            display: block;
 
-            margin-top: 10px;
+            margin-bottom: 4px;
+
+            color: #344054;
+
+            font-size: 13px;
+        }
+
+
+        .info-box p {
+
+            margin: 0;
+
+            color: #667085;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           BUTTON
+        ===================================================== */
+
+        .form-actions {
 
             display: flex;
 
@@ -379,8 +671,13 @@
         }
 
 
-        .primary-btn {
+        .create-btn {
+
             border: none;
+
+            padding: 13px 26px;
+
+            border-radius: 10px;
 
             background:
                 linear-gradient(
@@ -391,83 +688,133 @@
 
             color: white;
 
-            padding: 14px 28px;
-
-            border-radius: 11px;
+            font-family: inherit;
 
             font-size: 14px;
 
-            font-weight: 600;
+            font-weight: 700;
 
             cursor: pointer;
 
-            transition: 0.25s;
+            transition: all 0.25s ease;
 
             box-shadow:
-                0 8px 20px rgba(79,70,229,0.25);
+                0 8px 20px rgba(79,70,229,0.22);
         }
 
 
-        .primary-btn:hover {
+        .create-btn:hover {
+
             transform: translateY(-2px);
 
             box-shadow:
-                0 12px 25px rgba(79,70,229,0.32);
+                0 12px 25px rgba(79,70,229,0.30);
         }
 
 
-        /* ================= RESPONSIVE ================= */
+        .create-btn:active {
 
-        @media (max-width: 900px) {
+            transform: translateY(0);
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 950px) {
 
             .project-grid {
+
                 grid-template-columns: 1fr;
             }
 
+
             .project-intro {
+
                 min-height: auto;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .navbar {
-                padding: 0 25px;
             }
         }
 
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
+
+            .navbar {
+
+                padding: 16px 5%;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            .navbar .nav-links {
+
+                gap: 5px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .navbar .nav-links a {
+
+                font-size: 12px;
+
+                padding: 8px 9px;
+            }
+
 
             .project-page {
-                margin: 25px auto;
 
-                padding: 0 15px;
+                padding: 30px 15px 50px;
             }
+
 
             .page-top h1 {
-                font-size: 27px;
+
+                font-size: 28px;
             }
+
+
+            .project-intro {
+
+                padding: 28px;
+            }
+
 
             .form-card {
-                padding: 22px;
+
+                padding: 25px 20px;
             }
 
-            form {
+
+            .form-header {
+
+                flex-direction: column;
+
+                gap: 13px;
+            }
+
+
+            .form-row {
+
                 grid-template-columns: 1fr;
+
+                gap: 0;
             }
 
-            .full-width,
-            .button-area {
-                grid-column: auto;
-            }
 
-            .button-area {
+            .form-actions {
+
                 justify-content: stretch;
             }
 
-            .primary-btn {
+
+            .create-btn {
+
                 width: 100%;
             }
         }
@@ -480,311 +827,486 @@
 <body>
 
 
-<!-- ================= NAVBAR ================= -->
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
 
-<nav class="navbar">
+    <nav class="navbar">
 
-    <a class="logo" href="index.html">
-        Smart Team Matcher
-    </a>
-
-    <div class="nav-links">
-
-        <a href="index.html">
-            Dashboard
+        <a href="./index.html" class="logo">
+            Smart Team Matcher
         </a>
 
-        <a href="profile.html">
-            Profile
-        </a>
 
-        <a class="active" href="project.html">
-            Project
-        </a>
+        <div class="nav-links">
 
-        <a href="matches.html">
-            Matches
-        </a>
+            <a href="./index.html">
+                Dashboard
+            </a>
 
-        <a href="student.html">
-            Students
-        </a>
+            <a href="./profile.html">
+                Profile
+            </a>
 
-        <a href="team.html">
-            Team
-        </a>
+            <a href="./project.html" class="active">
+                Project
+            </a>
 
-    </div>
+            <a href="./matches.html">
+                Matches
+            </a>
 
-</nav>
+            <a href="./student.html">
+                Students
+            </a>
 
+            <a href="./team.html">
+                Team
+            </a>
 
+        </div>
 
-<!-- ================= MAIN PAGE ================= -->
-
-<main class="project-page">
-
-
-    <!-- PAGE HEADER -->
-
-    <div class="page-top">
-
-        <span class="page-label">
-            PROJECT REQUIREMENTS
-        </span>
-
-        <h1>
-            Create Your Project
-        </h1>
-
-        <p>
-            Tell us about your project and we'll help you find
-            students with the right skills.
-        </p>
-
-    </div>
+    </nav>
 
 
 
-    <!-- ================= CONTENT ================= -->
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
 
-    <div class="project-grid">
-
-
-        <!-- LEFT INFORMATION CARD -->
-
-        <section class="project-intro">
+    <main class="project-page">
 
 
-            <div class="project-icon">
-                🚀
+        <!-- PAGE HEADER -->
+
+        <div class="page-top">
+
+            <div class="page-label">
+                PROJECT SETUP
             </div>
 
 
-            <h2>
-                Turn your idea<br>
-                into a great team.
-            </h2>
+            <h1>
+                Create Your Project
+            </h1>
 
 
             <p>
-                Describe your project requirements and Smart Team
-                Matcher will analyze the skills, interests and
-                experience of students to suggest suitable teammates.
+                Add your project details and find students with
+                the right skills for your team.
             </p>
 
+        </div>
 
 
-            <div class="project-steps">
+
+        <!-- =================================================
+             CONTENT GRID
+        ================================================== -->
+
+        <div class="project-grid">
 
 
-                <div class="project-step">
+            <!-- =================================================
+                 LEFT INTRO CARD
+            ================================================== -->
 
-                    <span class="step-icon">
-                        1
-                    </span>
+            <section class="project-intro">
 
-                    <span>
-                        Describe your project idea
-                    </span>
 
+                <div class="project-icon">
+                    💡
                 </div>
 
-
-                <div class="project-step">
-
-                    <span class="step-icon">
-                        2
-                    </span>
-
-                    <span>
-                        Add the skills you need
-                    </span>
-
-                </div>
-
-
-                <div class="project-step">
-
-                    <span class="step-icon">
-                        3
-                    </span>
-
-                    <span>
-                        Select your ideal team size
-                    </span>
-
-                </div>
-
-
-                <div class="project-step">
-
-                    <span class="step-icon">
-                        4
-                    </span>
-
-                    <span>
-                        Discover your best matches
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- ================= FORM ================= -->
-
-        <section class="form-card">
-
-
-            <div class="form-card-header">
 
                 <h2>
-                    Project Information
+                    Turn your idea into a great team.
                 </h2>
 
-                <span class="step">
-                    STEP 1 OF 1
-                </span>
 
-            </div>
-
-
-
-            <form id="projectForm">
+                <p>
+                    Create your project by adding its requirements,
+                    required skills and preferred team size.
+                    Smart Team Matcher can then help you identify
+                    suitable teammates.
+                </p>
 
 
-                <!-- PROJECT NAME -->
 
-                <div class="field full-width">
+                <!-- STEPS -->
 
-                    <label for="projectName">
-                        Project Name
-                    </label>
+                <div class="project-steps">
 
 
-                    <div class="input-wrapper">
+                    <div class="step">
 
-                        <span class="input-icon">
-                            💡
-                        </span>
+                        <div class="step-number">
+                            1
+                        </div>
 
-                        <input
-                            type="text"
-                            id="projectName"
-                            placeholder="Example: Smart College Event System"
-                            required
+
+                        <div class="step-text">
+
+                            <h4>
+                                Describe your project
+                            </h4>
+
+                            <p>
+                                Give your project a clear name
+                                and description.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            2
+                        </div>
+
+
+                        <div class="step-text">
+
+                            <h4>
+                                Add required skills
+                            </h4>
+
+                            <p>
+                                Mention the technical skills
+                                needed for the project.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            3
+                        </div>
+
+
+                        <div class="step-text">
+
+                            <h4>
+                                Choose team size
+                            </h4>
+
+                            <p>
+                                Select how many members you
+                                want in your team.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            4
+                        </div>
+
+
+                        <div class="step-text">
+
+                            <h4>
+                                Find your teammates
+                            </h4>
+
+                            <p>
+                                Match your project with students
+                                who have suitable skills.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 FORM CARD
+            ================================================== -->
+
+            <section class="form-card">
+
+
+                <div class="form-header">
+
+                    <div>
+
+                        <h2>
+                            Project Information
+                        </h2>
+
+                        <p>
+                            Provide the details needed to create
+                            your project.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-label">
+                        STEP 1 OF 1
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     EXISTING FORM
+                     IDs PRESERVED FOR project.js
+                ================================================== -->
+
+                <form id="projectForm">
+
+
+                    <!-- PROJECT DETAILS -->
+
+                    <div class="form-section">
+
+
+                        <div class="section-title">
+                            Project Details
+                        </div>
+
+
+
+                        <!-- PROJECT NAME -->
+
+                        <div class="form-group">
+
+                            <label for="projectName">
+
+                                Project Name
+
+                                <span class="required">
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="projectName"
+                                name="projectName"
+                                placeholder="Enter your project name"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- DESCRIPTION -->
+
+                        <div class="form-group">
+
+                            <label for="description">
+
+                                Project Description
+
+                                <span class="required">
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <textarea
+                                id="description"
+                                name="description"
+                                placeholder="Describe your project idea, goals and main features..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+
+                        <!-- REQUIRED SKILLS -->
+
+                        <div class="form-group">
+
+                            <label for="requiredSkills">
+
+                                Required Skills
+
+                                <span class="required">
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="requiredSkills"
+                                name="requiredSkills"
+                                placeholder="Example: Java, Python, HTML, CSS, SQL"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- TEAM SIZE -->
+
+                        <div class="form-row">
+
+
+                            <div class="form-group">
+
+                                <label for="teamSize">
+
+                                    Team Size
+
+                                    <span class="required">
+                                        *
+                                    </span>
+
+                                </label>
+
+
+                                <select
+                                    id="teamSize"
+                                    name="teamSize"
+                                    required
+                                >
+
+                                    <option
+                                        value=""
+                                        disabled
+                                        selected
+                                    >
+                                        Select team size
+                                    </option>
+
+
+                                    <option value="2">
+                                        2 Members
+                                    </option>
+
+                                    <option value="3">
+                                        3 Members
+                                    </option>
+
+                                    <option value="4">
+                                        4 Members
+                                    </option>
+
+                                    <option value="5">
+                                        5 Members
+                                    </option>
+
+                                    <option value="6">
+                                        6 Members
+                                    </option>
+
+                                    <option value="7">
+                                        7 Members
+                                    </option>
+
+                                    <option value="8">
+                                        8 Members
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         INFO BOX
+                    ================================================== -->
+
+                    <div class="info-box">
+
+
+                        <div class="info-icon">
+                            ✦
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Better project details = better matches
+                            </strong>
+
+
+                            <p>
+                                Add accurate skills and a clear description
+                                so the system can identify students who are
+                                suitable for your project.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         CREATE BUTTON
+                    ================================================== -->
+
+                    <div class="form-actions">
+
+
+                        <button
+                            type="submit"
+                            class="create-btn"
                         >
+                            Create Project →
+                        </button>
+
 
                     </div>
 
-                </div>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
 
 
 
-                <!-- DESCRIPTION -->
+    <!-- =====================================================
+         EXISTING JAVASCRIPT
+    ====================================================== -->
 
-                <div class="field full-width">
-
-                    <label for="description">
-                        Project Description
-                    </label>
-
-                    <textarea
-                        id="description"
-                        placeholder="Describe your project idea, its purpose and what you want to build..."
-                        required
-                    ></textarea>
-
-                    <small>
-                        Give a short description so the matcher can understand your project.
-                    </small>
-
-                </div>
-
-
-
-                <!-- REQUIRED SKILLS -->
-
-                <div class="field full-width">
-
-                    <label for="requiredSkills">
-                        Required Skills
-                    </label>
-
-                    <input
-                        type="text"
-                        id="requiredSkills"
-                        placeholder="HTML, CSS, JavaScript, Python, SQL"
-                        required
-                    >
-
-                    <small>
-                        Separate multiple skills with commas.
-                    </small>
-
-                </div>
-
-
-
-                <!-- TEAM SIZE -->
-
-                <div class="field">
-
-                    <label for="teamSize">
-                        Team Size
-                    </label>
-
-                    <input
-                        type="number"
-                        id="teamSize"
-                        min="2"
-                        max="10"
-                        value="3"
-                        required
-                    >
-
-                    <div class="team-size-info">
-                        👥 Choose between 2 and 10 team members.
-                    </div>
-
-                </div>
-
-
-
-                <!-- BUTTON -->
-
-                <div class="button-area">
-
-                    <button
-                        type="submit"
-                        class="primary-btn"
-                    >
-                        Find Teammates →
-                    </button>
-
-                </div>
-
-
-            </form>
-
-
-        </section>
-
-
-    </div>
-
-
-</main>
-
-
-
-<script src="js/project.js"></script>
+    <script src="./js/project.js"></script>
 
 
 </body>

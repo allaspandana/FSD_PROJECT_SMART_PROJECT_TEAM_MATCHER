@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,64 +10,14 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: #f5f7fb;
-            color: #172033;
-        }
-
-        /* NAVBAR */
-
-        .navbar {
-            height: 70px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 7%;
-            border-bottom: 1px solid #e8ebf2;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 21px;
-            font-weight: 700;
-            color: #4f46e5;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #667085;
-            font-size: 14px;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #4f46e5;
-        }
-
-        /* PAGE */
+        /* =====================================================
+           PAGE
+        ===================================================== */
 
         .profile-page {
             max-width: 1250px;
-            margin: 45px auto;
-            padding: 0 25px;
+            margin: 0 auto;
+            padding: 45px 25px 70px;
         }
 
         .page-top {
@@ -74,16 +25,18 @@
         }
 
         .page-label {
+            display: inline-block;
             color: #4f46e5;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 1.5px;
         }
 
         .page-top h1 {
-            font-size: 34px;
-            margin-top: 8px;
-            margin-bottom: 8px;
+            font-size: 36px;
+            color: #172033;
+            margin: 8px 0 7px;
+            letter-spacing: -0.5px;
         }
 
         .page-top p {
@@ -91,132 +44,184 @@
             font-size: 15px;
         }
 
-        /* MAIN GRID */
+        /* =====================================================
+           MAIN GRID
+        ===================================================== */
 
         .profile-grid {
             display: grid;
-            grid-template-columns: 0.8fr 1.4fr;
-            gap: 28px;
-            align-items: start;
+            grid-template-columns: 0.8fr 1.6fr;
+            gap: 25px;
+            align-items: stretch;
         }
 
-        /* LEFT CARD */
+        /* =====================================================
+           LEFT INTRO CARD
+        ===================================================== */
 
         .profile-intro {
             background: linear-gradient(145deg, #4f46e5, #7c3aed);
             color: white;
             border-radius: 24px;
             padding: 35px;
-            min-height: 610px;
+            min-height: 650px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 18px 45px rgba(79, 70, 229, 0.20);
         }
 
         .profile-intro::before {
             content: "";
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
             position: absolute;
-            right: -80px;
-            top: -70px;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            right: -90px;
+            top: -80px;
         }
 
         .profile-intro::after {
             content: "";
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.07);
             position: absolute;
-            left: -80px;
-            bottom: -70px;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.07);
+            left: -85px;
+            bottom: -75px;
         }
 
         .profile-icon {
-            width: 72px;
-            height: 72px;
-            background: rgba(255,255,255,0.15);
+            width: 68px;
+            height: 68px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 20px;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 34px;
-            margin-bottom: 30px;
+
+            font-size: 31px;
+            margin-bottom: 28px;
+
+            position: relative;
+            z-index: 2;
         }
 
         .profile-intro h2 {
-            font-size: 27px;
+            font-size: 29px;
             line-height: 1.3;
             margin-bottom: 15px;
+
+            position: relative;
+            z-index: 2;
         }
 
         .profile-intro > p {
-            color: #e7e7ff;
-            line-height: 1.7;
+            color: #f0efff;
+            line-height: 1.75;
             font-size: 14px;
+
+            position: relative;
+            z-index: 2;
         }
+
+        /* =====================================================
+           BENEFITS
+        ===================================================== */
 
         .benefits {
             margin-top: 35px;
+            position: relative;
+            z-index: 2;
         }
 
         .benefit {
             display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            font-size: 14px;
+            align-items: flex-start;
+            gap: 13px;
+            margin-bottom: 19px;
+            font-size: 13.5px;
+            line-height: 1.55;
         }
 
         .check {
-            width: 30px;
-            height: 30px;
+            flex-shrink: 0;
+
+            width: 29px;
+            height: 29px;
+
             border-radius: 50%;
-            background: rgba(255,255,255,0.15);
+
+            background: rgba(255, 255, 255, 0.15);
+
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+
+            font-size: 13px;
+            font-weight: 700;
         }
 
-        /* FORM CARD */
+        /* =====================================================
+           FORM CARD
+        ===================================================== */
 
         .form-card {
             background: white;
             border-radius: 24px;
-            padding: 35px;
-            border: 1px solid #e9ecf3;
-            box-shadow: 0 12px 35px rgba(20, 30, 60, 0.06);
+            padding: 32px;
+
+            border: 1px solid #e7eaf0;
+
+            box-shadow: 0 14px 40px rgba(20, 30, 60, 0.07);
         }
 
         .form-card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 28px;
+
+            margin-bottom: 27px;
+            padding-bottom: 20px;
+
+            border-bottom: 1px solid #edf0f5;
         }
 
         .form-card-header h2 {
             font-size: 21px;
+            color: #172033;
+            margin-bottom: 4px;
+        }
+
+        .form-card-header p {
+            font-size: 12px;
+            color: #98a2b3;
         }
 
         .step {
             background: #eef2ff;
             color: #4f46e5;
-            padding: 7px 13px;
+
+            padding: 8px 14px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            white-space: nowrap;
         }
 
-        /* FORM */
+        /* =====================================================
+           FORM
+        ===================================================== */
 
-        form {
+        #profileForm {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 21px;
         }
 
         .field {
@@ -230,33 +235,55 @@
 
         label {
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
+
             margin-bottom: 8px;
+
             color: #344054;
+        }
+
+        .required {
+            color: #ef4444;
+            margin-left: 2px;
         }
 
         input,
         select {
             width: 100%;
-            height: 48px;
+            height: 49px;
+
             border: 1px solid #d9dee8;
             border-radius: 11px;
+
             padding: 0 14px;
+
             font-size: 14px;
             color: #344054;
-            background: #fff;
+
+            background: #ffffff;
+
             outline: none;
-            transition: 0.25s;
+
+            transition: all 0.25s;
+        }
+
+        input:hover,
+        select:hover {
+            border-color: #aeb7c8;
         }
 
         input:focus,
         select:focus {
             border-color: #6366f1;
-            box-shadow: 0 0 0 4px rgba(99,102,241,0.10);
+
+            box-shadow:
+                0 0 0 4px rgba(99, 102, 241, 0.10);
+
+            background: #ffffff;
         }
 
         input::placeholder {
-            color: #98a2b3;
+            color: #a0a7b4;
         }
 
         small {
@@ -265,7 +292,9 @@
             font-size: 11px;
         }
 
-        /* INPUT WITH ICON */
+        /* =====================================================
+           INPUT ICON
+        ===================================================== */
 
         .input-wrapper {
             position: relative;
@@ -273,45 +302,177 @@
 
         .input-icon {
             position: absolute;
+
             left: 14px;
             top: 14px;
-            font-size: 17px;
+
+            font-size: 16px;
+
+            pointer-events: none;
         }
 
         .input-wrapper input {
             padding-left: 42px;
         }
 
-        /* BUTTON */
+        /* =====================================================
+           SECTION TITLE
+        ===================================================== */
+
+        .section-title {
+            grid-column: 1 / -1;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: #475467;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+
+            margin-top: 5px;
+            margin-bottom: -3px;
+        }
+
+        .section-title::after {
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background: #edf0f5;
+        }
+
+        /* =====================================================
+           PROFESSIONAL INFORMATION BOX
+        ===================================================== */
+
+        .matching-info {
+            grid-column: 1 / -1;
+
+            display: flex;
+            align-items: flex-start;
+
+            gap: 12px;
+
+            padding: 15px 17px;
+
+            background: #f5f7ff;
+
+            border: 1px solid #e3e7ff;
+
+            border-radius: 12px;
+        }
+
+        .matching-info-icon {
+            width: 30px;
+            height: 30px;
+
+            flex-shrink: 0;
+
+            border-radius: 9px;
+
+            background: #e0e7ff;
+            color: #4f46e5;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 15px;
+        }
+
+        .matching-info strong {
+            display: block;
+
+            color: #344054;
+
+            font-size: 12px;
+
+            margin-bottom: 3px;
+        }
+
+        .matching-info p {
+            color: #667085;
+
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* =====================================================
+           BUTTON
+        ===================================================== */
 
         .button-area {
             grid-column: 1 / -1;
-            margin-top: 10px;
+
+            margin-top: 5px;
+            padding-top: 21px;
+
+            border-top: 1px solid #edf0f5;
+
             display: flex;
             justify-content: flex-end;
         }
 
         .primary-btn {
             border: none;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+
             color: white;
-            padding: 14px 28px;
+
+            min-width: 165px;
+
+            padding: 14px 25px;
+
             border-radius: 11px;
+
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
+
             cursor: pointer;
-            transition: 0.25s;
-            box-shadow: 0 8px 20px rgba(79,70,229,0.25);
+
+            transition: all 0.25s;
+
+            box-shadow:
+                0 7px 18px rgba(79, 70, 229, 0.22);
         }
 
         .primary-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(79,70,229,0.32);
+
+            box-shadow:
+                0 11px 25px rgba(79, 70, 229, 0.30);
         }
 
-        /* RESPONSIVE */
+        .primary-btn:active {
+            transform: translateY(0);
+        }
 
-        @media (max-width: 900px) {
+        /* =====================================================
+           NAVBAR FIX
+           Overrides the old white navbar from this page.
+        ===================================================== */
+
+        .profile-page ~ * {
+            box-sizing: border-box;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 950px) {
 
             .profile-grid {
                 grid-template-columns: 1fr;
@@ -321,36 +482,38 @@
                 min-height: auto;
             }
 
-            .nav-links {
+            .profile-intro h2 br {
                 display: none;
-            }
-
-            .navbar {
-                padding: 0 25px;
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
 
             .profile-page {
-                margin: 25px auto;
-                padding: 0 15px;
+                padding: 30px 16px 50px;
             }
 
             .page-top h1 {
-                font-size: 27px;
+                font-size: 29px;
             }
 
             .form-card {
-                padding: 22px;
+                padding: 23px 19px;
             }
 
-            form {
+            .form-card-header {
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            #profileForm {
                 grid-template-columns: 1fr;
             }
 
             .full-width,
-            .button-area {
+            .button-area,
+            .section-title,
+            .matching-info {
                 grid-column: auto;
             }
 
@@ -362,333 +525,481 @@
                 width: 100%;
             }
         }
+
+        @media (max-width: 500px) {
+
+            .profile-intro {
+                padding: 27px 23px;
+                border-radius: 20px;
+            }
+
+            .profile-intro h2 {
+                font-size: 25px;
+            }
+
+            .form-card {
+                border-radius: 20px;
+            }
+
+            .form-card-header {
+                flex-direction: column;
+            }
+
+            .step {
+                align-self: flex-start;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-<nav class="navbar">
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
 
-    <a class="logo" href="index.html">
-        Smart Team Matcher
-    </a>
+    <nav class="navbar">
 
-    <div class="nav-links">
-        <a href="index.html">Dashboard</a>
-        <a class="active" href="profile.html">Profile</a>
-        <a href="project.html">Project</a>
-        <a href="matches.html">Matches</a>
-        <a href="student.html">Students</a>
-        <a href="team.html">Team</a>
-    </div>
+        <a class="logo" href="index.html">
+            Smart Team Matcher
+        </a>
 
-</nav>
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a class="active" href="profile.html">Profile</a>
+            <a href="project.html">Project</a>
+            <a href="matches.html">Matches</a>
+            <a href="student.html">Students</a>
+            <a href="team.html">Team</a>
+        </div>
 
-
-<main class="profile-page">
-
-    <div class="page-top">
-
-        <span class="page-label">
-            STUDENT PROFILE
-        </span>
-
-        <h1>Create Your Profile</h1>
-
-        <p>
-            Tell us about yourself and let Smart Team Matcher
-            find the right teammates for you.
-        </p>
-
-    </div>
+    </nav>
 
 
-    <div class="profile-grid">
+    <!-- =====================================================
+         MAIN PAGE
+    ====================================================== -->
 
-        <!-- LEFT INTRODUCTION -->
+    <main class="profile-page">
 
-        <section class="profile-intro">
+        <!-- PAGE HEADER -->
 
-            <div class="profile-icon">
-                👤
-            </div>
+        <div class="page-top">
 
-            <h2>
-                Build your perfect<br>
-                project team.
-            </h2>
+            <span class="page-label">
+                STUDENT PROFILE
+            </span>
+
+            <h1>
+                Create Your Profile
+            </h1>
 
             <p>
-                Your profile helps our matching system understand
-                your skills, interests and preferred role so you
-                can connect with students who complement your abilities.
+                Tell us about yourself and let Smart Team Matcher
+                find the right teammates for you.
             </p>
 
+        </div>
 
-            <div class="benefits">
 
-                <div class="benefit">
-                    <span class="check">✓</span>
-                    <span>Find students with complementary skills</span>
+        <!-- =================================================
+             MAIN GRID
+        ================================================== -->
+
+        <div class="profile-grid">
+
+
+            <!-- =================================================
+                 LEFT INTRO
+            ================================================== -->
+
+            <section class="profile-intro">
+
+                <div class="profile-icon">
+                    👤
                 </div>
 
-                <div class="benefit">
-                    <span class="check">✓</span>
-                    <span>Get better project team recommendations</span>
+                <h2>
+                    Build your perfect
+                    <br>
+                    project team.
+                </h2>
+
+                <p>
+                    Your profile helps our matching system understand
+                    your skills, interests and preferred role so you
+                    can connect with students who complement your abilities.
+                </p>
+
+
+                <div class="benefits">
+
+                    <div class="benefit">
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        <span>
+                            Find students with complementary skills
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        <span>
+                            Get better project team recommendations
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        <span>
+                            Discover students with similar interests
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        <span>
+                            Build balanced and productive teams
+                        </span>
+
+                    </div>
+
                 </div>
 
-                <div class="benefit">
-                    <span class="check">✓</span>
-                    <span>Discover students with similar interests</span>
+            </section>
+
+
+            <!-- =================================================
+                 FORM
+            ================================================== -->
+
+            <section class="form-card">
+
+                <div class="form-card-header">
+
+                    <div>
+
+                        <h2>
+                            Personal & Skills Information
+                        </h2>
+
+                        <p>
+                            Complete your details to improve team matching.
+                        </p>
+
+                    </div>
+
+                    <span class="step">
+                        STEP 1 OF 1
+                    </span>
+
                 </div>
 
-                <div class="benefit">
-                    <span class="check">✓</span>
-                    <span>Build balanced and productive teams</span>
-                </div>
 
-            </div>
+                <!-- =================================================
+                     PROFILE FORM
+                ================================================== -->
 
-        </section>
+                <form id="profileForm">
 
 
-        <!-- FORM -->
+                    <!-- BASIC INFORMATION -->
 
-        <section class="form-card">
-
-            <div class="form-card-header">
-
-                <h2>Personal & Skills Information</h2>
-
-                <span class="step">
-                    STEP 1 OF 1
-                </span>
-
-            </div>
+                    <div class="section-title">
+                        Basic Information
+                    </div>
 
 
-            <form id="profileForm">
+                    <!-- NAME -->
 
-                <!-- NAME -->
+                    <div class="field">
 
-                <div class="field">
+                        <label for="name">
+                            Full Name
+                            <span class="required">*</span>
+                        </label>
 
-                    <label for="name">
-                        Full Name
-                    </label>
+                        <div class="input-wrapper">
 
-                    <div class="input-wrapper">
+                            <span class="input-icon">
+                                👤
+                            </span>
 
-                        <span class="input-icon">👤</span>
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Enter your full name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="field">
+
+                        <label for="email">
+                            Email Address
+                            <span class="required">*</span>
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ✉️
+                            </span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="example@email.com"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SKILLS -->
+
+                    <div class="field full-width">
+
+                        <label for="skills">
+                            Technical Skills
+                            <span class="required">*</span>
+                        </label>
 
                         <input
                             type="text"
-                            id="name"
-                            placeholder="Enter your full name"
+                            id="skills"
+                            placeholder="HTML, CSS, JavaScript, Python"
                             required
                         >
 
+                        <small>
+                            Add your technical skills separated by commas.
+                        </small>
+
                     </div>
 
-                </div>
 
+                    <!-- INTERESTS -->
 
-                <!-- EMAIL -->
+                    <div class="field full-width">
 
-                <div class="field">
-
-                    <label for="email">
-                        Email Address
-                    </label>
-
-                    <div class="input-wrapper">
-
-                        <span class="input-icon">✉️</span>
+                        <label for="interests">
+                            Areas of Interest
+                            <span class="required">*</span>
+                        </label>
 
                         <input
-                            type="email"
-                            id="email"
-                            placeholder="example@email.com"
+                            type="text"
+                            id="interests"
+                            placeholder="Web Development, AI, Database"
                             required
                         >
 
+                        <small>
+                            Mention areas you enjoy working or learning in.
+                        </small>
+
                     </div>
 
-                </div>
+
+                    <!-- ROLE & EXPERIENCE -->
+
+                    <div class="section-title">
+                        Role & Experience
+                    </div>
 
 
-                <!-- SKILLS -->
+                    <!-- ROLE -->
 
-                <div class="field full-width">
+                    <div class="field">
 
-                    <label for="skills">
-                        Skills
-                    </label>
+                        <label for="role">
+                            Preferred Role
+                            <span class="required">*</span>
+                        </label>
 
-                    <input
-                        type="text"
-                        id="skills"
-                        placeholder="HTML, CSS, JavaScript, Python"
-                        required
-                    >
+                        <select id="role" required>
 
-                    <small>
-                        Separate multiple skills with commas.
-                    </small>
+                            <option value="">
+                                Select Role
+                            </option>
 
-                </div>
+                            <option value="Frontend">
+                                Frontend Developer
+                            </option>
 
+                            <option value="Backend">
+                                Backend Developer
+                            </option>
 
-                <!-- INTERESTS -->
+                            <option value="Full Stack">
+                                Full Stack Developer
+                            </option>
 
-                <div class="field full-width">
+                            <option value="UI/UX">
+                                UI/UX Designer
+                            </option>
 
-                    <label for="interests">
-                        Interests
-                    </label>
+                            <option value="Database">
+                                Database Developer
+                            </option>
 
-                    <input
-                        type="text"
-                        id="interests"
-                        placeholder="Web Development, AI, Database"
-                        required
-                    >
+                            <option value="AI/ML">
+                                AI / ML Developer
+                            </option>
 
-                    <small>
-                        Separate multiple interests with commas.
-                    </small>
+                        </select>
 
-                </div>
-
-
-                <!-- ROLE -->
-
-                <div class="field">
-
-                    <label for="role">
-                        Preferred Role
-                    </label>
-
-                    <select id="role" required>
-
-                        <option value="">
-                            Select Role
-                        </option>
-
-                        <option value="Frontend">
-                            Frontend
-                        </option>
-
-                        <option value="Backend">
-                            Backend
-                        </option>
-
-                        <option value="Full Stack">
-                            Full Stack
-                        </option>
-
-                        <option value="UI/UX">
-                            UI/UX
-                        </option>
-
-                        <option value="Database">
-                            Database
-                        </option>
-
-                        <option value="AI/ML">
-                            AI/ML
-                        </option>
-
-                    </select>
-
-                </div>
+                    </div>
 
 
-                <!-- EXPERIENCE -->
+                    <!-- EXPERIENCE -->
 
-                <div class="field">
+                    <div class="field">
 
-                    <label for="experience">
-                        Experience Level
-                    </label>
+                        <label for="experience">
+                            Experience Level
+                            <span class="required">*</span>
+                        </label>
 
-                    <select id="experience" required>
+                        <select id="experience" required>
 
-                        <option value="">
-                            Select Experience
-                        </option>
+                            <option value="">
+                                Select Experience
+                            </option>
 
-                        <option value="Beginner">
-                            Beginner
-                        </option>
+                            <option value="Beginner">
+                                Beginner
+                            </option>
 
-                        <option value="Intermediate">
-                            Intermediate
-                        </option>
+                            <option value="Intermediate">
+                                Intermediate
+                            </option>
 
-                        <option value="Advanced">
-                            Advanced
-                        </option>
+                            <option value="Advanced">
+                                Advanced
+                            </option>
 
-                    </select>
+                        </select>
 
-                </div>
-
-
-                <!-- AVAILABILITY -->
-
-                <div class="field">
-
-                    <label for="availability">
-                        Availability
-                    </label>
-
-                    <select id="availability" required>
-
-                        <option value="">
-                            Select Availability
-                        </option>
-
-                        <option value="High">
-                            High
-                        </option>
-
-                        <option value="Medium">
-                            Medium
-                        </option>
-
-                        <option value="Low">
-                            Low
-                        </option>
-
-                    </select>
-
-                </div>
+                    </div>
 
 
-                <!-- BUTTON -->
+                    <!-- AVAILABILITY -->
 
-                <div class="button-area">
+                    <div class="field">
 
-                    <button
-                        type="submit"
-                        class="primary-btn"
-                    >
-                        Save Profile →
-                    </button>
+                        <label for="availability">
+                            Availability
+                            <span class="required">*</span>
+                        </label>
 
-                </div>
+                        <select id="availability" required>
 
-            </form>
+                            <option value="">
+                                Select Availability
+                            </option>
 
-        </section>
+                            <option value="High">
+                                High - Available regularly
+                            </option>
 
-    </div>
+                            <option value="Medium">
+                                Medium - Available sometimes
+                            </option>
 
-</main>
+                            <option value="Low">
+                                Low - Limited availability
+                            </option>
+
+                        </select>
+
+                    </div>
 
 
-<script src="js/profile.js"></script>
+                    <!-- MATCHING INFORMATION -->
+
+                    <div class="matching-info">
+
+                        <div class="matching-info-icon">
+                            ✨
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                How your profile helps
+                            </strong>
+
+                            <p>
+                                Your skills, interests, role and availability
+                                are used to recommend students who are a good
+                                match for your project team.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BUTTON -->
+
+                    <div class="button-area">
+
+                        <button
+                            type="submit"
+                            class="primary-btn"
+                        >
+                            Save Profile →
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         EXISTING JAVASCRIPT
+    ====================================================== -->
+
+    <script src="js/profile.js"></script>
 
 </body>
+
 </html>
+```

@@ -1,61 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Find Teammates | Smart Team Matcher</title>
-    <link rel="stylesheet" href="css/style.css">
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
 </head>
+
 <body>
+
+<!-- =====================================================
+     NAVIGATION BAR
+===================================================== -->
+
 <nav class="navbar">
-    <a class="logo" href="index.html">Smart Team Matcher</a>
+
+    <a
+        class="logo"
+        href="index.html"
+    >
+        Smart Team Matcher
+    </a>
+
     <div class="nav-links">
-        <a href="index.html">Dashboard</a>
-        <a href="profile.html">Profile</a>
-        <a href="project.html">Project</a>
-        <a class="active" href="matches.html">Matches</a>
-        <a href="student.html">Students</a>
-        <a href="team.html">Team</a>
+
+        <a href="index.html">
+            Dashboard
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+        <a href="project.html">
+            Project
+        </a>
+
+        <a
+            class="active"
+            href="matches.html"
+        >
+            Matches
+        </a>
+
+        <a href="student.html">
+            Students
+        </a>
+
+        <a href="team.html">
+            Team
+        </a>
+
     </div>
+
 </nav>
 
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
 <main class="matches-page">
+
+    <!-- PAGE HEADER -->
+
     <section class="matches-header">
-        <span class="page-label">SMART MATCHING</span>
-        <h1>Find Your Perfect Teammates</h1>
-        <p>We analyze skills, interests, experience, role and availability to recommend students who best match your project requirements.</p>
+
+        <span class="page-label">
+            SMART MATCHING
+        </span>
+
+        <h1>
+            Find Your Perfect Teammates
+        </h1>
+
+        <p>
+            We analyze skills, interests, experience,
+            role and availability to recommend students
+            who best match your project requirements.
+        </p>
+
     </section>
+
+
+    <!-- PROJECT INFORMATION -->
 
     <section class="project-card">
-        <span class="page-label">YOUR PROJECT</span>
-        <h2>Project Requirements</h2>
-        <div id="projectInfo"></div>
+
+        <span class="page-label">
+            YOUR PROJECT
+        </span>
+
+        <h2>
+            Project Requirements
+        </h2>
+
+        <div id="projectInfo">
+            <!-- Project information comes from matches.js -->
+        </div>
+
     </section>
+
+
+    <!-- MATCHING SYSTEM -->
 
     <section class="matching-system">
-        <span class="page-label">MATCHING SYSTEM</span>
-        <h2>How Compatibility is Calculated</h2>
-        <p>Each candidate receives a score based on multiple project-related factors.</p>
+
+        <span class="page-label">
+            MATCHING SYSTEM
+        </span>
+
+        <h2>
+            How Compatibility is Calculated
+        </h2>
+
+        <p>
+            Each candidate receives a score based on
+            multiple project-related factors.
+        </p>
 
         <div class="score-grid">
-            <article class="score-item"><strong>50%</strong><h3>Skills</h3><p>Technical skill match</p></article>
-            <article class="score-item"><strong>20%</strong><h3>Interests</h3><p>Project interest match</p></article>
-            <article class="score-item"><strong>15%</strong><h3>Experience</h3><p>Experience level</p></article>
-            <article class="score-item"><strong>10%</strong><h3>Role</h3><p>Preferred role match</p></article>
-            <article class="score-item"><strong>5%</strong><h3>Availability</h3><p>Availability level</p></article>
+
+            <article class="score-item">
+
+                <strong>50%</strong>
+
+                <h3>Skills</h3>
+
+                <p>
+                    Technical skill match
+                </p>
+
+            </article>
+
+
+            <article class="score-item">
+
+                <strong>20%</strong>
+
+                <h3>Interests</h3>
+
+                <p>
+                    Project interest match
+                </p>
+
+            </article>
+
+
+            <article class="score-item">
+
+                <strong>15%</strong>
+
+                <h3>Experience</h3>
+
+                <p>
+                    Experience level
+                </p>
+
+            </article>
+
+
+            <article class="score-item">
+
+                <strong>10%</strong>
+
+                <h3>Role</h3>
+
+                <p>
+                    Preferred role match
+                </p>
+
+            </article>
+
+
+            <article class="score-item">
+
+                <strong>5%</strong>
+
+                <h3>Availability</h3>
+
+                <p>
+                    Availability level
+                </p>
+
+            </article>
+
         </div>
+
     </section>
 
+
+    <!-- RECOMMENDATIONS -->
+
     <section class="recommendations-section">
+
         <div class="recommendations-header">
-            <span class="page-label">RECOMMENDATIONS</span>
-            <h2>Recommended Teammates</h2>
+
+            <span class="page-label">
+                RECOMMENDATIONS
+            </span>
+
+            <h2>
+                Recommended Teammates
+            </h2>
+
         </div>
-        <div id="matches"></div>
+
+
+        <div id="matches">
+            <!-- Students come from matches.js -->
+        </div>
+
     </section>
+
 </main>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
 <script src="js/data.js"></script>
 <script src="js/matches.js"></script>
+
 </body>
+
 </html>
